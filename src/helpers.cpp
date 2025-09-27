@@ -13,10 +13,7 @@ void handle_enable_command(bool enable, AnimeCtl &animectl) {
 }
 
 void handle_brightness_command(int brightness, AnimeCtl &animectl) {
-  if (brightness > 3) {
-    throw std::out_of_range("Brightness must be between 0 and 3");
-  }
-  if (brightness < 0) {
+  if (brightness > 3 || brightness < 0) {
     throw std::out_of_range("Brightness must be between 0 and 3");
   }
 

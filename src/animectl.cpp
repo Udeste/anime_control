@@ -25,7 +25,7 @@ void AnimeCtl::init_hid_lib() {
 void AnimeCtl::open_hid_device() {
   this->hid_handle = hid_open(this->vendor_id, this->product_id, nullptr);
   if (!this->hid_handle) {
-    throw std::runtime_error("Cannot open device. Is it connected?");
+    throw std::runtime_error("Cannot open device. Is it connected? Do you have the right permissions to access it?");
   }
   std::cout << "Device opened successfully!\n";
 }
