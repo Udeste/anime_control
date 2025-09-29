@@ -37,42 +37,48 @@ void AnimeCtl::init_device() {
 }
 
 void AnimeCtl::enable_matrix(bool enabled = true) {
-  unsigned char buf[3] = {0};
-  buf[0] = 0xc3;
-  buf[1] = 0x01;
-  buf[2] = enabled ? 0x00 : 0x80;
+  uint8_t buf[] = {
+    0xc3,
+    0x01,
+    static_cast<uint8_t>(enabled ? 0x00 : 0x80)
+  };
 
   this->write_packets(buf, sizeof(buf));
 }
 
 void AnimeCtl::set_brightness(int brightness = 3) {
-  unsigned char buf[3] = {0};
-  buf[0] = 0xc0;
-  buf[1] = 0x04;
-  buf[2] = brightness;
+  uint8_t buf[] = {
+    0xc0,
+    0x04,
+    static_cast<uint8_t>(brightness)
+  };
 
   this->write_packets(buf, sizeof(buf));
 }
 
 void AnimeCtl::enable_builtin_anim(bool enabled = true) {
-  unsigned char buf[3] = {0};
-  buf[0] = 0xc4;
-  buf[1] = 0x01;
-  buf[2] = enabled ? 0x00 : 0x80;
+  uint8_t buf[] = {
+    0xc4,
+    0x01,
+    static_cast<uint8_t>(enabled ? 0x00 : 0x80)
+  };
 
   this->write_packets(buf, sizeof(buf));
 }
 
 void AnimeCtl::flush() {
-  unsigned char buf[2] = {0};
-  buf[0] = 0xc0;
-  buf[1] = 0x03;
+  uint8_t buf[] = {
+    0xc0,
+    0x03
+  };
+
   this->write_packets(buf, sizeof(buf));
 }
 
-void AnimeCtl::write_packets(unsigned char* pkts, size_t size) {
 
-  unsigned char full_pkt[64] = {0}; // Full packet size is 64 bytes for Anime Matrix
+void AnimeCtl::write_packets(uint8_t* pkts, size_t size) {
+
+  uint8_t full_pkt[64] = {0}; // Full packet size is 64 bytes for Anime Matrix
   full_pkt[0] = 0x5e; // DEV page ID
   std::memcpy(full_pkt + 1, pkts, size);
 

@@ -25,6 +25,6 @@ class AnimeCtl {
 
     void init_hid_lib();
     void open_hid_device();
-    void write_packets(unsigned char* pkts, size_t size);
+    void write_packets(uint8_t *pkts, size_t size);
 };
 

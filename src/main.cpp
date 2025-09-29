@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
 
   AnimeCtl animectl(VENDOR_ID, PROD_ID);
   animectl.init();
-  // animectl.init_device();
+  animectl.init_device();
 
   switch (argv[1][1]) {
     case 'e':
