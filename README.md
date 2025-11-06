@@ -46,7 +46,7 @@ to set up an udev rule.
 
 ```shell
 
-# nano /etc/udev/rules.d/99-anime-matrix.rules
+# nano /etc/udev/rules.d/60-anime-matrix.rules
 
 ```
 
@@ -54,8 +54,7 @@ and paste the following line:
 
 ```udev
 
-SUBSYSTEM=="hidraw", ATTRS{idVendor}=="0b05", ATTRS{idProduct}=="193b", MODE="0660",
-OWNER="1000", GROUP="1000"
+KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="0b05", ATTRS{idProduct}=="193b", MODE="0660", TAG+="uaccess"
 
 ```
 
